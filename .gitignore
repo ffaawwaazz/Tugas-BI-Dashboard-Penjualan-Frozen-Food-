@@ -1,0 +1,20 @@
+# Repo publik: data mentah, nama pelanggan, dan narasi yang menyebut nama tidak boleh ikut.
+
+# frozen-food: data mentah dan turunannya
+frozen-food/Data Pembelian Frozen Food/
+frozen-food/all_data.csv
+frozen-food/all_sheets.csv
+# data.json = nama asli (lokal saja); data.publik.json = nama disamarkan, dipakai CI
+frozen-food/dashboard-web/src/data.json
+
+# frozen-food: keluaran dan teks yang menyebut nama pelanggan
+frozen-food/*.ipynb
+frozen-food/make_notebook*
+frozen-food/dashboard.png
+frozen-food/dashboard.pdf
+
+# Dependensi, build, alat lokal
+.venv/
+node_modules/
+dist/
+__pycache__/

@@ -1,0 +1,48 @@
+name: Deploy dashboard frozen food
+
+on:
+  push:
+    branches: [main]
+    paths: ["frozen-food/dashboard-web/**", ".github/workflows/deploy-frozen-food.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frozen-food/dashboard-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frozen-food/dashboard-web/package-lock.json
+      - run: npm ci
+      # data.json (nama asli) tidak ada di repo; build memakai varian dengan nama pelanggan disamarkan
+      - run: cp src/data.publik.json src/data.json
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frozen-food/dashboard-web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
