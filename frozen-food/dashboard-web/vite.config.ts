@@ -15,4 +15,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react", "react-dom", "react-dom/client", "react/jsx-runtime", "motion/react", "lucide-react", "@radix-ui/react-tooltip"],
   },
+  server: {
+    proxy: { "/api": "http://127.0.0.1:5174" },
+  },
 });

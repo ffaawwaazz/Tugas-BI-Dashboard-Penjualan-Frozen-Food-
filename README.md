@@ -8,14 +8,36 @@ A collection of analysis and dashboard projects. Each project lives in its own f
 
 ## About the data
 
-The raw data and the analysis notebook are **not** in this repo. In the public version, customer names are replaced with "Pelanggan 001" and so on (ranked by revenue); amounts, dates and product names are unchanged. The dashboard copy itself is in Indonesian.
+The raw workbooks and analysis notebook are **not** in this repo. Local workbook data is generated into the ignored `frozen-food/dashboard-web/src/data.json`, with customer names retained. The public build uses anonymized `data.publik.json` instead; amounts, dates and product names are unchanged.
 
 ## Running the frozen-food dashboard
+
+For the attached April-September workbooks (from `frozen-food/`):
+
+```bash
+uv run python build_sales_dashboard_data.py
+```
+
+Run the local Matplotlib chart service in one terminal, then Vite in another:
+
+```bash
+uv run python chart_server.py
+```
+
+```bash
+cd dashboard-web
+npm install
+npm run dev
+```
+
+The local dashboard requests filtered SVG charts from Matplotlib. If that service is not running, the browser charts remain available as a fallback. GitHub Pages continues to use the anonymized dataset and browser fallback.
+
+For an anonymized preview without the workbooks:
 
 ```bash
 cd frozen-food/dashboard-web
 npm install
-cp src/data.publik.json src/data.json   # or generate the real data.json from the raw data with build_dashboard_data.py
+cp src/data.publik.json src/data.json
 npm run dev
 ```
 

@@ -13,7 +13,7 @@ import SegmentedControl from "@/components/arc/segmented-control/segmented-contr
 import { Tooltip } from "@/components/arc/tooltip/tooltip";
 import { RibbonChart } from "./components/RibbonChart";
 import { analyze, BULAN, calendar, filterRows, firstMonths, type Analysis, type Dict, type Row, type TopRow } from "./analytics";
-import raw from "./data.json";
+import raw from "./data.publik.json";
 import { int, jt, one, pct, rp } from "./format";
 import styles from "./App.module.css";
 
